@@ -1,0 +1,11 @@
+host=localhost
+port=3306
+database=SE
+username=SE
+password=SE2020
+secret=12345
+col_num=3
+sql_statements_start
+SELECT * 
+FROM students;
+sql_statements_end
