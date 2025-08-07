@@ -5,6 +5,7 @@ username=SE
 password=SE2020
 secret=12345
 col_num=3
+header_holder=first|last||id
 sql_statements_start
 SELECT * 
 FROM students;

@@ -29,6 +29,7 @@ public class DBServlet extends HttpServlet {
         String user = "";
         String password = "";
         int colNum = 0;
+        String header_holder = "";   //default "|" as the delimiter
         String configSecret = "";
         String sql_statement = "";
 
@@ -65,8 +66,10 @@ public class DBServlet extends HttpServlet {
                     else if (line.startsWith("secret=")) {
                         configSecret = line.substring("secret=".length()).trim();
                     }
+                    else if (line.startsWith("header_holder=")) {
+                        header_holder = line.substring("header_holder=".length()).trim();
+                    }                    
                 } 
-                
                  else {
                     	if (line.equalsIgnoreCase("sql_statements_end")) {
                     		inSqlBlock = false;
@@ -116,11 +119,9 @@ public class DBServlet extends HttpServlet {
                         }
                         result += "@";
                     }
-
+                    result = header_holder + "@" + result;
                     out.println(result.toString());
-                    
                 } 
-                
                 catch (SQLException e) {
                     out.println("<p><strong>Error executing query:</strong> " + sql_statement + "</p>");
                     e.printStackTrace(out);
